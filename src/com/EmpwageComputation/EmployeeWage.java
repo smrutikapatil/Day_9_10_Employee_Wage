@@ -7,14 +7,10 @@ public class EmployeeWage {
 	public static final int NUM_OF_WORKING_DAYS=20;
 	public static final int MAX_HOURS_FOR_MONTH = 100;
 	
-	public static void main(String[] args) {
-		getMonthlyEmpWage();
-    }
-	static void getMonthlyEmpWage() {
-		int empHrs= 0, totalEmpHrs= 0, totalWorkingDays=0;
+   public static int computeEmpWage() {
+	   int empHrs= 0, totalEmpHrs= 0, totalWorkingDays=0;
 		//Computation
-		while(totalEmpHrs <= MAX_HOURS_FOR_MONTH &&
-			   totalWorkingDays < NUM_OF_WORKING_DAYS) { 
+		while(totalEmpHrs <= MAX_HOURS_FOR_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS) { 
 			   totalWorkingDays++;
 			int empCheck = (int) Math.floor(Math.random() * 10 ) %3;
 			switch(empCheck) {
@@ -32,5 +28,10 @@ public class EmployeeWage {
 		}
 	int totalEmpWage = totalEmpHrs * wage_pr_hr;
 	System.out.println("Total Emp Wage: " + totalEmpWage);
- }
+     return totalEmpWage;
+   }
+   public static void main(String[] args) {
+	   computeEmpWage();
+   }
+
 }
