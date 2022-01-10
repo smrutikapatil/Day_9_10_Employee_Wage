@@ -1,6 +1,6 @@
 package com.EmpwageComputation;
 
-public class EmpWagebBuilderObject{
+public class EmpWageBuilderObjects {
 	public static final int Is_Fulltime_Present = 1;
 	public static final int Is_Parttime_Present = 2;
 	 
@@ -10,7 +10,7 @@ public class EmpWagebBuilderObject{
 	public final int MaxHoursPerMonth;
 	private int TotalEmpWage;
 	 
-	public EmpWagebBuilderObject(String Company , int EmpRatePerHour, int NumOfWorkingDays, int MaxHoursPerMonth){
+	public EmpWageBuilderObjects(String Company , int EmpRatePerHour, int NumOfWorkingDays, int MaxHoursPerMonth){
 		this.Company = Company;
 		this.EmpRatePerHour = EmpRatePerHour;
 		this.NumOfWorkingDays = NumOfWorkingDays;
@@ -43,9 +43,9 @@ public class EmpWagebBuilderObject{
 		return "Total Emp Wage for Company: " +Company+ " is: " +TotalEmpWage;
 	}
 	public static void main(String[] args) {
-		EmpWagebBuilderObject dmart = new EmpWagebBuilderObject("Dmart", 20, 2, 10);
-		EmpWagebBuilderObject reliance = new EmpWagebBuilderObject("Reliance", 10, 4, 20);
-		EmpWagebBuilderObject vmart = new EmpWagebBuilderObject("Vmart", 30, 3, 30);
+		EmpWageBuilderObjects dmart = new EmpWageBuilderObjects("Dmart", 20, 2, 10);
+		EmpWageBuilderObjects reliance = new EmpWageBuilderObjects("Reliance", 10, 4, 20);
+		EmpWageBuilderObjects vmart = new EmpWageBuilderObjects("Vmart", 30, 3, 30);
 		dmart.ComputeEmpWage();
 		System.out.println(dmart);
 		reliance.ComputeEmpWage();
@@ -54,3 +54,5 @@ public class EmpWagebBuilderObject{
 		System.out.println(vmart);
 	}
 }
+
+
