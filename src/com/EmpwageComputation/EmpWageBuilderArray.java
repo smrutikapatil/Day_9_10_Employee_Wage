@@ -1,5 +1,6 @@
 package com.EmpwageComputation;
-public class EmpWageBuilderArray {
+
+public class EmpWageBuilderArray implements IComputerEmpwage {
 	public static final int Is_Fulltime_Present = 1;
 	public static final int Is_Parttime_Present = 2;
 	
@@ -9,16 +10,19 @@ public class EmpWageBuilderArray {
     public EmpWageBuilderArray() {
     	CompanyEmpWageArray = new CompanyEmpWage[5];
     }
-    private void addCompanyEmpWage(String Company , int EmpRatePerHour, int NumOfWorkingDays, int MaxHoursPerMonth){
+    
+    public void addCompanyEmpWage(String Company , int EmpRatePerHour, int NumOfWorkingDays, int MaxHoursPerMonth){
     	CompanyEmpWageArray[NumOfCompany] = new CompanyEmpWage(Company, EmpRatePerHour, NumOfWorkingDays, MaxHoursPerMonth);
     	NumOfCompany++;
     }
-    private void ComputeEmpWage() {
+    
+    public void ComputeEmpWage() {
     	for (int i = 0; i < NumOfCompany; i++) {
     		CompanyEmpWageArray[i].setTotalEmpWage(this.ComputeEmpWage(CompanyEmpWageArray[i]));
     		System.out.println(CompanyEmpWageArray[i]);
     	}
     }
+    
 	private int ComputeEmpWage(CompanyEmpWage CompanyEmpWage) {
 		        //variables
 				int EmpHrs= 0, TotalEmpHrs= 0, TotalWorkingDays=0;
@@ -42,9 +46,10 @@ public class EmpWageBuilderArray {
 			    return TotalEmpHrs * CompanyEmpWage.EmpRatePerHour;
 		       }
 	  public static void main(String[] args) {
-		EmpWageBuilderArray EmpWageBuilder = new EmpWageBuilderArray();
-		EmpWageBuilder.addCompanyEmpWage("Dmart", 20, 2, 10);
-		EmpWageBuilder.addCompanyEmpWage("Reliance", 10, 4, 20);
-		EmpWageBuilder.ComputeEmpWage();
+		EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
+		empWageBuilder.addCompanyEmpWage("Dmart", 20, 2, 10);
+		empWageBuilder.addCompanyEmpWage("Reliance", 10, 4, 20);
+		empWageBuilder.ComputeEmpWage();
+		//System.out.println("Total wage for DMart Company: " + empWageBuilder.getTotalWage("Dmart"));
 	}
 }
