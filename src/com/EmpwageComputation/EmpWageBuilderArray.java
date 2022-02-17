@@ -1,6 +1,8 @@
 package com.EmpwageComputation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EmpWageBuilderArray implements IComputerEmpwage {
 	public static final int Is_Fulltime_Present = 1;
@@ -8,20 +10,25 @@ public class EmpWageBuilderArray implements IComputerEmpwage {
 	
 	private int NumOfCompany = 0;
 	ArrayList<CompanyEmpWage> arrayList ;
+	private Map<String, CompanyEmpWage> companyHashMap;
   
     public EmpWageBuilderArray() {
     	arrayList = new ArrayList<>();
+    	companyHashMap = new HashMap<>() ;
     }
     
     private void addCompanyEmpWage(String Company , int EmpRatePerHour, int NumOfWorkingDays, int MaxHoursPerMonth){
-    	arrayList.add(NumOfCompany, new CompanyEmpWage(Company, EmpRatePerHour, NumOfWorkingDays, MaxHoursPerMonth));
-    	NumOfCompany++;
+    	CompanyEmpWage computeEmpWage = new CompanyEmpWage(Company, EmpRatePerHour, NumOfWorkingDays, MaxHoursPerMonth);
+    	arrayList.add(computeEmpWage);
+        companyHashMap.put(Company, computeEmpWage);
+        NumOfCompany++;
     }
     
     private void ComputeEmpWage() {
     	for (int i = 0; i < NumOfCompany; i++) {
-        	arrayList.get(i).setTotalEmpWage(this.ComputeEmpWage(arrayList.get(i)));
-    		System.out.println(arrayList.get(i));
+    		CompanyEmpWage computeEmpWage = arrayList.get(i);
+            computeEmpWage.setTotalEmpWage(this.ComputeEmpWage(arrayList.get(i)));
+            System.out.println(computeEmpWage);
     	}
     }
     
@@ -42,8 +49,9 @@ public class EmpWageBuilderArray implements IComputerEmpwage {
 					default:
 					EmpHrs=0;
 				}
-				TotalEmpHrs += EmpHrs;
-				System.out.println("Day#: " + TotalWorkingDays + " Emp Hr: " +EmpHrs);
+					int empWage = CompanyEmpWage.EmpRatePerHour * EmpHrs;
+		            TotalEmpHrs = TotalEmpHrs + EmpHrs;
+		            System.out.println(" Days#: " + TotalWorkingDays +  " Emp Hour: " + EmpHrs  + " Daily Employee Wage: " + empWage );
 				}
 			    return TotalEmpHrs * CompanyEmpWage.EmpRatePerHour;
 		       }
